@@ -50,11 +50,13 @@ def csxinxi():
 	global port
 	global xiancheng
 	global ports
-
+	global host
+	
 	port = input("[-]请输入要扫描的端口： ")
 
 	xiancheng = input("[-]请输入线程： ")
-
+	
+	host = input("[-]请输入域名或ip: ")
 	if port:
 		if "-" in port:
 			ports = duankous(port)
@@ -70,7 +72,7 @@ def csxinxi():
 
 	
 
-def dksm_main(host):
+def dksm_main():
 	print("==进入端口扫描项==\n")
 	
 	csxinxi()

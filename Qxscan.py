@@ -14,6 +14,13 @@ def xiugai():
 	global port
 	host = input("请输入目标ip或域名： ")
 	port = input("请输入目标端口: ")
+	if "http://" in host:
+		host = host.replace("http://","")
+	if "https://" in host:
+		host = host.replace("https://","")
+	if "/" in host:
+		host = host.replace("/","")
+		
 
 def biaoti():
 	print("""  ___                            
@@ -22,7 +29,7 @@ def biaoti():
 | |_| | >  <\__ \ (_| (_| | | | |
  \__\_\/_/\_\___/\___\__,_|_| |_|
                                  """)
-	xinxi = "Qxscan: v1.1\n"
+	xinxi = "Qxscan: v1.2\n"
 	xinxi += "======== BY:F_Dao||QQ:166014073========\n\n"
 
 	print(xinxi)
@@ -57,7 +64,7 @@ def main():
 		kaitou(host,port)
 		global xuanxiang
 		if xuanxiang == "1":
-			dksm.dksm_main(host)
+			dksm.dksm_main()
 		if xuanxiang == "exit":
 			exit(0)
 		if xuanxiang == "0":

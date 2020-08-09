@@ -67,20 +67,20 @@ def saomiao(host,port):
 	except:
 		return
 
-def zhuym(host):
-	q = host.split(".")
-	yuming = q[-2]+"."+q[-1]
+def zhuym(xinxi):
+	lb = xinxi.split(".")
+	yuming = lb[-2]+"."+lb[-1]
 	return yuming
 
 def zymbp_main(yuming):
 	global list_ip
 	threads = []
 	print("==进入子域名爆破项==\n")
-	pd = input("请输入要爆破的域名(当前域名请输[y])：")
-	if pd == "y":
-		yumings = zhuym(yuming)
+	pd = input("请输入要爆破的域名(当前域名请直接回车):")
+	if pd:
+		yumings = zhuym(pd)
 	else:
-		yumings = pd
+		yumings = zhuym(yuming)
 	xc = input("请输入线程: ")
 	zym = zid("./zd/zymbp/zym.txt")
 	for i in range(int(xc)):

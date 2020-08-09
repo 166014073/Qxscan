@@ -25,7 +25,11 @@ def wzcx(ip):
 	return y
 
 def dzcx_main(host):
-	ips = getIP(host)
-	dizhi = wzcx(ips)
-	
+	if "/" in host:
+		host = host.replace("/","")
+	try:
+		ips = getIP(host)
+		dizhi = wzcx(ips)
+	except:
+		dizhi = "查询失败！"
 	return dizhi

@@ -37,14 +37,14 @@ def lscx(host):
 
 def ipjx_main(host):
 	print("==进入ip解析项==\n")
-	yuming = input("==>请输入域名(若当前域名直接输入[y]): ")
+	yuming = input("==>请输入域名(若当前域名直接回车): ")
 	
-	if yuming == "y":
-		dqcx(host)
-		lscx(host)
-	else:
+	if yuming:
 		dqcx(yuming)
 		lscx(yuming)
+	else:
+		dqcx(host)
+		lscx(host)
 	print("=======查询结束=======\n")
 	
 	

@@ -8,8 +8,12 @@ def getIP(domain):
 	myaddr = socket.getaddrinfo(domain, 'http')
 	return(myaddr[0][4][0])
 
-def xxx(host):
-	url = "http://"+host
+def xxx(host,port,https):
+	if https:
+		phttps = "https://"
+	else:
+		phttps = "http://"
+	url = phttps+host+":"+str(port)
 	try:
 		qingqiu = requests.get(url,timeout=2)
 	except:
@@ -44,7 +48,7 @@ def xxx(host):
 	except:
 		pass
 	xinxi += "\n==========================================="
-	print("[+]"+"http://"+host+"\t+开启+"+"\n"+xinxi)
+	print("[+]"+phttps+host+":"+str(port)+"\t+开启+"+"\n"+xinxi)
 
 
 def ipy(host):
@@ -62,7 +66,7 @@ def saomiao(host,port):
 		socket.setdefaulttimeout(1)
 		lianjie = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
 		lianjie.connect((host,port))
-		host_port=host+":"+str(port)
+		host_port=host
 		list_ip.append(host_port)
 		lianjie.close()		
 	except:
@@ -70,21 +74,32 @@ def saomiao(host,port):
 
 def cdsm_main(yuming):
 	print("==进入c段扫描项==\n")
+	pd = input("请输入要扫描的端口[80直接回车]:")
+	if pd:
+		port = str(pd)
+	else:
+		port = 80
+	pds = input("是否开启https?[y](不是则直接回车)：")
+	if pds == "y":
+		https = True
+	else:
+		https = False
+	
 	threads = []
 	ip = getIP(yuming)
 	ips = ipy(ip)
 	for host in ips:
-		t = threading.Thread(target=main_a,args=(host,))
+		t = threading.Thread(target=main_a,args=(host,port))
 		threads.append(t)
 		t.start()
 	for i in list_ip:
-		xxx(i)
+		xxx(i,port,https)
 	for t in threads:
 		t.join()
 	print("==扫描完成==\n")
 
-def main_a(host):
-	dk=80
+def main_a(host,port):
+	dk=port
 	saomiao(host,dk)
 
 if __name__ == '__main__':

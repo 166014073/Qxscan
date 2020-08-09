@@ -65,7 +65,7 @@ def zidian():
 def webbp_main(host,port):
 	threads = []
 	print("==进入web路径爆破项==\n")
-	pdssl = input("请问是否为https(y/n): ")
+	pdssl = input("请问是否为https[y](否则直接回车): ")
 	if pdssl == "y":
 		url = "https://"+host+":"+port+"/"
 	else:
