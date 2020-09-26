@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import dksm
 import cdsm
 import webbp
@@ -7,6 +8,10 @@ import zymcx
 import zymbp
 import options
 import dzcx
+import zwsb
+import chjc
+import webjc
+
 
 def xiugai():
 	#修改ip与端口
@@ -24,12 +29,12 @@ def xiugai():
 
 def biaoti():
 	print("""  ___                            
- / _ \ __  _____  ___ __ _ _ __  
-| | | |\ \/ / __|/ __/ _` | '_ \ 
-| |_| | >  <\__ \ (_| (_| | | | |
- \__\_\/_/\_\___/\___\__,_|_| |_|
+ / _ \\ __  _____  ___ __ _ _ __  
+| | | |\\ \\/ / __|/ __/ _` | '_ \\ 
+| |_| | >  <\\__ \\ (_| (_| | | | |
+ \\__\\_\\/_/\\_\\___/\\___\\__,_|_| |_|
                                  """)
-	xinxi = "Qxscan: v1.2\n"
+	xinxi = "Qxscan: v1.5\n"
 	xinxi += "======== BY:F_Dao||QQ:166014073========\n\n"
 
 	print(xinxi)
@@ -49,6 +54,9 @@ def kaitou(host,port):
 	xinxi += "[6]-子域名查询-\n"
 	xinxi += "[7]-子域名爆破-\n"
 	xinxi += "[8]-http方法查询-\n"
+	xinxi += "[9]-web指纹识别-\n"
+	xinxi += "[10]-存活检测-\n"
+	xinxi += "[11]-扫描web资产-\n"
 	xinxi += "\n[exit]-退出-"
 	
 	print(xinxi)
@@ -83,7 +91,12 @@ def main():
 			zymbp.zymbp_main(host)
 		if xuanxiang == "8":
 			options.options_main(host)
-		
+		if xuanxiang == "9":
+			zwsb.zwsb_main(host)
+		if xuanxiang == "10":
+			chjc.chjc_main(host)
+		if xuanxiang == "11":
+			webjc.webjc_main()
 
 if __name__ == "__main__":
 	main()

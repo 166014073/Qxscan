@@ -2,7 +2,7 @@ import socket
 
 def cx(host):
 	s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-	s.connect(('218.241.97.14', 43))
+	s.connect(('183.84.10.201', 43))
 	hosts = host+" \r\n"
 	s.send(hosts.encode("utf-8"))
 	response =b''

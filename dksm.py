@@ -36,7 +36,7 @@ def ipy(host):
 	s = host[0:l]
 	q = s.split(".")
 	liebiao = []
-	for i in range(0,255):
+	for i in range(0,256):
 		f = q[0]+"."+q[1]+"."+q[2]+"."+str(i)
 		liebiao.append(f)
 		
