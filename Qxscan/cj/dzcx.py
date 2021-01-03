@@ -3,8 +3,8 @@ import re
 import socket
 
 def getIP(domain):
-	myaddr = socket.getaddrinfo(domain, 'http')
-	return(myaddr[0][4][0])
+	ip = socket.gethostbyname(domain)
+	return ip
 
 def wzcx(ip):
 	header={

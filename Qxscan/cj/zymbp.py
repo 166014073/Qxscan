@@ -1,9 +1,15 @@
 import socket
-import threading
 import requests
+import threading
 import re
 import queue
 
+list_ip = []
+
+
+def getIP(domain):
+	ip = socket.gethostbyname(domain)
+	return ip
 
 def zid(wenjian):
 		
@@ -15,74 +21,80 @@ def zid(wenjian):
 			
 	return words
 
-def xxx(host):
-	url = "http://"+host
+
+def saomiao(url):
 	try:
-		qingqiu = requests.get(url,timeout=2)
+		ip = socket.gethostbyname(url)
+		return ip
 	except:
-		print(host+" -- 端口开放但连接错误")
-	try:
-		qingqiu.encoding = qingqiu.apparent_encoding
-		wangye = qingqiu.text
-		title = re.findall("<title>.*?</title>",wangye)
-	except:
-		pass
-	try:
-		w = qingqiu.headers
-	except:
-		pass
-	xinxi = ""
-	try:
-		if w['server']:
-			xinxi += "服务器："+w['server']
-	except:
-		pass
-	try:
-		if w['X-Powered-By']:
-			xinxi += "\n信息："+w['X-Powered-By']
-	except:
-		pass
-	try:
-		if title:
-			biaoti = title[0]
-			biaotis = biaoti.replace("<title>","") 
-			biaotiss = biaotis.replace("</title>","")
-			xinxi += "\n标题:"+biaotiss
-	except:
-		pass
-	xinxi += "\n==========================================="
-	print("[+]"+"http://"+host+"\t+开启+"+"\n"+xinxi)
+		return "None"
 
 
+def main_a(zym,yuming):
+	while True:
+		if zym.empty():
+			return
+		else:
+			i = zym.get()
+			i = i.strip()
+			url = i+"."+yuming
+			zhi = saomiao(url)
+			if zhi != "None":
+				urls = "http://"+url+"/"
+				try:
+					qingqiu = requests.get(urls,timeout=2)
+				except:
+					pass
+				try:
+					qingqiu.encoding = qingqiu.apparent_encoding
+					wangye = qingqiu.text
+					title = re.findall("<title>.*?</title>",wangye)
+				except:
+					pass
+				try:
+					w = qingqiu.headers
+				except:
+					pass
+				try:
+					if w['server']:
+						zhi += "\n服务器："+w['server']
+				except:
+					pass
+				try:
+					if w['X-Powered-By']:
+						zhi += "\n信息："+w['X-Powered-By']
+				except:
+					pass
+				try:
+					if title:
+						biaoti = title[0]
+						biaotis = biaoti.replace("<title>","") 
+						biaotiss = biaotis.replace("</title>","")
+						zhi += "\n标题:"+biaotiss
+				except:
+					pass
+				zhi += "\n================================="
+				print("[+]"+"http://"+url+"/\t-开启-\n解析IP为:"+zhi)
 
-	
-def saomiao(host,port):
-	try:
-		socket.setdefaulttimeout(1)
-		lianjie = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
-		lianjie.connect((host,port))
-		host_port=host+":"+str(port)
-		lianjie.close()		
-		xxx(host_port)
-	except:
-		return
 
-def zhuym(xinxi):
-	lb = xinxi.split(".")
-	yuming = lb[-2]+"."+lb[-1]
-	return yuming
 
 def zymbp_main(yuming):
 	global list_ip
 	threads = []
 	print("==进入子域名爆破项==\n")
-	pd = input("请输入要爆破的域名(当前域名请直接回车):")
+	pd = input("请输入要爆破的根域名(当前域名请直接回车):")
 	if pd:
-		yumings = zhuym(pd)
+		yumings = pd
 	else:
-		yumings = zhuym(yuming)
-	xc = input("请输入线程: ")
+		yumings = yuming
+	xcs = input("请输入线程: ")
+	if xcs:
+		xc = xcs
+	else:
+		xc = 10
+
 	zym = zid("./zd/zymbp/zym.txt")
+
 	for i in range(int(xc)):
 		t = threading.Thread(target=main_a,args=(zym,yumings,))
 		threads.append(t)
@@ -91,21 +103,3 @@ def zymbp_main(yuming):
 	for t in threads:
 		t.join()
 	print("==扫描完成==\n")
-	
-
-def main_a(zym,yuming):
-	dk=80
-	while True:
-		if zym.empty():
-			return
-		else:
-			i = zym.get()
-			i = i.strip()
-			url = i+"."+yuming
-			saomiao(url,dk)
-		
-		
-		
-		
-
-

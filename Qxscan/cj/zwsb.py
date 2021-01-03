@@ -57,9 +57,11 @@ def zwsb(host,port,que,pd):
 
 		urls = url+w
 		requests.adapters.DEFAULT_RETRIES = 5
-		r = requests.get(urls,timeout=5,headers=header)
+		s = requests.session()
+		r = s.head(urls,timeout=5,headers=header)
 		if r.status_code == 200:
 			print("使用cms为："+e+"\n验证文件为："+urls)
+		s.close()
 
 	
 
@@ -75,8 +77,8 @@ def message():
 
 #获取域名的ip
 def getIP(domain):
-	myaddr = socket.getaddrinfo(domain, 'http')
-	return(myaddr[0][4][0])
+	ip = socket.gethostbyname(domain)
+	return ip
 
 def saomiao(host,port):
 	try:

@@ -7,7 +7,7 @@ def yumings(xinxi):
 	return yuming
 
 def zymcx(host):
-	hosts=yumings(host)
+	hosts=host
 	header = {
 		'User-Agent':'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:77.0) Gecko/20100101 Firefox/77.0'
 		}
@@ -29,7 +29,7 @@ def zymcx(host):
 
 def zymcx_main(host):
 	print("==进入子域名查询项==\n")
-	yuming = input("==>请输入域名(若当前域名直接回车): ")
+	yuming = input("==>请输入根域名(若当前域名直接回车): ")
 	if yuming:
 		zymcx(yuming)
 	else:

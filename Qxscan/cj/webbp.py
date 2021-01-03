@@ -11,6 +11,7 @@ def lujin():
 
 	q = os.listdir(b)
 	for i in q:
+		i = i.replace('.txt','')
 		print(i)
 
 def zid(wenjian):
@@ -47,9 +48,11 @@ def qqq(zidian,url):
 			urls = url+i
 			try:
 				requests.adapters.DEFAULT_RETRIES = 5
-				r = requests.head(urls,timeout=5,headers=header)
+				s = requests.session()
+				r = s.head(urls,timeout=5,headers=header)
 				if r.status_code != 404 and r.status_code != 405 and r.status_code != 400:
 					print("\n[+]"+urls+"\nResponse code: ["+str(r.status_code)+"]")
+				s.close()
 			except:
 				jishu+=1
 				print("错误")
@@ -60,7 +63,7 @@ def zidian():
 	global lujins
 	wenjian = input("\n==>请输入需要的字典文件: ")
 	wenjian = wenjian.strip()
-	lujins = "./zd/blpj/"+wenjian
+	lujins = "./zd/blpj/"+wenjian+'.txt'
 
 
 def webbp_main(host,port):
@@ -72,6 +75,10 @@ def webbp_main(host,port):
 	else:
 		url = "http://"+host+":"+port+"/"
 	xc = input("请输入线程数： ")
+	if xc:
+		xc = xc
+	else:
+		xc = '10'
 	print("============================")
 	lujin()
 	zidian()
@@ -92,6 +99,3 @@ def webbp_main(host,port):
 			zidian()
 	
 	print("\n=======扫描完成=======\n")
-
-
-	

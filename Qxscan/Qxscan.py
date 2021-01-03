@@ -11,7 +11,7 @@ import cj.dzcx
 import cj.zwsb
 import cj.chjc
 import cj.webjc
-
+import cj.urlcj
 
 def xiugai():
 	#修改ip与端口
@@ -34,7 +34,7 @@ def biaoti():
 | |_| | >  <\\__ \\ (_| (_| | | | |
  \\__\\_\\/_/\\_\\___/\\___\\__,_|_| |_|
                                  """)
-	xinxi = "Qxscan: v1.5\n"
+	xinxi = "Qxscan: v1.7\n"
 	xinxi += "======== BY:F_Dao||QQ:166014073========\n\n"
 
 	print(xinxi)
@@ -57,6 +57,7 @@ def kaitou(host,port):
 	xinxi += "[9]-web指纹识别-\n"
 	xinxi += "[10]-存活检测-\n"
 	xinxi += "[11]-扫描web资产-\n"
+	xinxi += "[12]-百度url采集-\n"
 	xinxi += "\n[exit]-退出-"
 	
 	print(xinxi)
@@ -97,6 +98,8 @@ def main():
 			cj.chjc.chjc_main(host)
 		if xuanxiang == "11":
 			cj.webjc.webjc_main()
+		if xuanxiang == "12":
+			cj.urlcj.urlcj_main()
 
 if __name__ == "__main__":
 	main()

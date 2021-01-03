@@ -5,8 +5,8 @@ import re
 
 list_ip = []
 def getIP(domain):
-	myaddr = socket.getaddrinfo(domain, 'http')
-	return(myaddr[0][4][0])
+	ip = socket.gethostbyname(domain)
+	return ip
 
 def xxx(host,port,https):
 	if https:
