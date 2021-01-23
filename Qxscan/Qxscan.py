@@ -35,7 +35,7 @@ def biaoti():
  \\__\\_\\/_/\\_\\___/\\___\\__,_|_| |_|
                                  """)
 	xinxi = "Qxscan: v1.7\n"
-	xinxi += "======== BY:F_Dao||QQ:166014073========\n\n"
+	xinxi += "======== BY:F_Dao||========\n\n"
 
 	print(xinxi)
 
